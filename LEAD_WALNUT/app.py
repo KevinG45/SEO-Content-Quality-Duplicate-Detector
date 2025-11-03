@@ -79,16 +79,22 @@ st.markdown("""
 # Load functions
 @st.cache_resource
 def load_model():
-    with open('models/quality_model.pkl', 'rb') as f:
+    import os
+    model_path = os.path.join(os.path.dirname(__file__), 'models', 'quality_model.pkl')
+    with open(model_path, 'rb') as f:
         return pickle.load(f)
 
 @st.cache_data
 def load_features():
-    return pd.read_csv('data/features.csv')
+    import os
+    features_path = os.path.join(os.path.dirname(__file__), 'data', 'features.csv')
+    return pd.read_csv(features_path)
 
 @st.cache_data
 def load_duplicates():
-    return pd.read_csv('data/duplicates.csv')
+    import os
+    duplicates_path = os.path.join(os.path.dirname(__file__), 'data', 'duplicates.csv')
+    return pd.read_csv(duplicates_path)
 
 def main():
     # Header
